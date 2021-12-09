@@ -8,7 +8,7 @@ function App() {
     <>
     <Logo/>
     <Header/>
-    <Footer/>
+    <Footer title = "Facebook" website = "google.com" address = "BKK" zipcode = {10250} isOpen ></Footer>
     </>
   );
 }
