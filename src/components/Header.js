@@ -1,4 +1,6 @@
 import React from 'react'
+import Button from '../styles/button/Button'
+import Title from '../styles/title/Title'
 import Logo from './Logo'
 
 const Header = () => {
@@ -25,6 +27,7 @@ const Header = () => {
 
     return (
         <div>
+            <Title>Projext React</Title>
             <h1>Hello  {showMessage()}</h1>
             {/* {companyAddress} */}
             {/* {numgber*2}  */}
@@ -54,11 +57,12 @@ const Header = () => {
                 )
             }
 
-            {
+            {/* {
                 isLogin ? <Logo/> : <p>Unlock</p>
-            }
+            } */}
 
             <button onClick={showMe}>Click Me!</button>
+            <Button onClick={showMe} correct>Click Me!</Button>
 
             {/* return array element */}
            <ul>
