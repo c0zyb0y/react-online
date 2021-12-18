@@ -9,6 +9,9 @@ import {
   Link
 } from "react-router-dom";
 import AboutPage from "./Pages/AboutPage";
+import ProductPage from "./Pages/ProductPage";
+import ContactPage from "./Pages/ContactPage";
+import DetailPage from "./Pages/DetailPage";
 
 
 function App() {
@@ -17,7 +20,10 @@ function App() {
        <NavBar/>
        <Switch>
          <Route exact path ='/'><HomePage/></Route>
+         <Route path ='/product'><ProductPage/></Route>
          <Route path = '/about'><AboutPage/></Route>
+         <Route path ='/contact'><ContactPage/></Route>
+         <Route path ='/detail'><DetailPage/></Route>
        </Switch>
        <Footer/>
     </Router>
