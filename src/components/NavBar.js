@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom"
 const NavBar = () => {
   return (
     <div>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="dark" variant="dark" expand="lg">
         {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
         <NavLink className="navbar-brand" to="/" exact>React-Bootstrap</NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
