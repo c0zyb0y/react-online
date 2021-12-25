@@ -1,10 +1,11 @@
 import React from "react";
-import { Spinner, Card, CardDeck } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Spinner, Card, CardDeck, Button } from "react-bootstrap";
+import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 
 const DetailPage = () => {
   const { id, title } = useParams();
+  const history = useHistory()
 
   const [detail, setDetail] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
@@ -55,24 +56,22 @@ const DetailPage = () => {
           <p>
             {title} ({id})
           </p>
-
+          <Button className="mb-4" variant="outline-dark" onClick={() => {
+              history.goBack()
+          }}>Back</Button>
           <div className="row">
             <CardDeck>
               {detail.length > 0 ? (
                 detail.map((d, index) => {
                   return (
                     <div className="col-md-4" key={d.ch_id}>
-                      <Card className="mb-4 shadow-sm">
-                      <Card.Body>
-                        <Card.Title>{d.ch_title}</Card.Title>
-                        <Card.Text>
-                          
-                        </Card.Text>
-                      </Card.Body>
-                      <Card.Footer>
-                       {d.ch_dateadd}
-                      </Card.Footer>
-                    </Card>
+                      <Card className="mb-4 shadow-sm" bg="dark" text="light">
+                        <Card.Body>
+                          <Card.Title>{d.ch_title}</Card.Title>
+                          <Card.Text></Card.Text>
+                        </Card.Body>
+                        <Card.Footer>{d.ch_dateadd}</Card.Footer>
+                      </Card>
                     </div>
                   );
                 })
