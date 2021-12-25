@@ -2,6 +2,7 @@ import React from "react";
 import { Table, Image, Badge, Spinner, Button } from "react-bootstrap"
 import axios from "axios";
 import { GiClick } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 
 const ProductPage = () => {
@@ -77,7 +78,11 @@ const ProductPage = () => {
                               <td> <Badge variant="success">{p.view}</Badge>{' '}</td>
                               {/* <td>{p.picture}</td> */}
                               <td><Image src={p.picture} rounded width={60} /></td>
-                              <td><Button href="/detail" variant="secondary">Click<GiClick/></Button> </td>
+                              <td>
+                                <Link to={`/detail/${p.id}/title/${p.title}`}>
+                                <Button variant="secondary">Click<GiClick/></Button>
+                                </Link>
+                              </td>
                           </tr>
                       )
                   })
