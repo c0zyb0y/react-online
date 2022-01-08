@@ -1,9 +1,12 @@
 import React from 'react'
 import axios from "axios";
 import { Table, Image, Badge, Spinner, Button } from "react-bootstrap"
-import {BsFillPencilFill,BsFillTrashFill } from "react-icons/bs";
+import {BsFillPencilFill,BsFillTrashFill } from "react-icons/bs"
+import { useHistory } from 'react-router-dom'
 
 const Indexpage = () => {
+
+    const history = useHistory()
 
     const [category, setCategory] = React.useState([])
     const [loading, setLoading] = React.useState(false)
@@ -52,6 +55,9 @@ const Indexpage = () => {
         <div className="container">
       <div className="row">
         <div className="col-md-12 mt-4">
+        <Button variant='success' className="mb-3" onClick={() => {history.push('/category/create')}}>
+            + Add New Category
+        </Button>
           <h2>Category</h2>
           <Table striped bordered hover variant="dark">
             <thead>
