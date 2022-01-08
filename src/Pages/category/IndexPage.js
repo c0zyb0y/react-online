@@ -80,10 +80,23 @@ const Indexpage = () => {
                                      async () => {
                                           const isConfirm = window.confirm('Confirm to delete >> ' + c.name + '?')
                                           if (isConfirm === true){
-                                              const apiURL = 'https://api.codingthailand.com/api/category/'
-                                              const resp = await axios.delete(apiURL+c.id)
-                                              alert(resp.data.message)
-                                              history.go(0) //refresh page
+                                              try{
+                                                const apiURL = 'https://api.codingthailand.com/api/category/'
+                                                const resp = await axios.delete(apiURL+c.id)
+                                                alert(resp.data.message)
+                                                history.go(0) //refresh page
+                                              }
+                                              catch(error){
+                                                  setError(error)
+                                              }
+                                              if(error){
+                                                return(
+                                                    <div className="text-center mt-5 text-danger">
+                                                        <h4>Error from API, please try again</h4>
+                                                        <p>{error.response.data.message}</p>
+                                                    </div>
+                                                )
+                                            }
                                           }
                                       }
                                   }>Delete <BsFillTrashFill/></Button>
