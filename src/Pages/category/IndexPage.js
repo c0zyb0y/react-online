@@ -76,7 +76,17 @@ const Indexpage = () => {
                               <td>{c.name}</td>
                               <td>
                                   <Button>Edit<BsFillPencilFill/></Button>
-                                  <Button variant="danger" className="ml-3">Delete <BsFillTrashFill/></Button>
+                                  <Button variant="danger" className="ml-3" onClick={
+                                     async () => {
+                                          const isConfirm = window.confirm('Confirm to delete >> ' + c.name + '?')
+                                          if (isConfirm === true){
+                                              const apiURL = 'https://api.codingthailand.com/api/category/'
+                                              const resp = await axios.delete(apiURL+c.id)
+                                              alert(resp.data.message)
+                                              history.go(0) //refresh page
+                                          }
+                                      }
+                                  }>Delete <BsFillTrashFill/></Button>
                               </td>
                           </tr>
                       )
