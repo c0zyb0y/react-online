@@ -13,6 +13,7 @@ import ProductPage from "./Pages/ProductPage";
 import ContactPage from "./Pages/ContactPage";
 import DetailPage from "./Pages/DetailPage";
 import HospitalPage from "./Pages/Hospital/HospitalPage";
+import IndexPage from "./Pages/category/IndexPage";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
            <DetailPage/>
          </Route>
          <Route path ='/hospital'><HospitalPage/></Route>
+         <Route path = '/category'><IndexPage/></Route>
        </Switch>
        <Footer/>
     </Router>
