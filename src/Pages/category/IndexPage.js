@@ -75,7 +75,7 @@ const Indexpage = () => {
                               <td>{c.id}</td>
                               <td>{c.name}</td>
                               <td>
-                                  <Button>Edit<BsFillPencilFill/></Button>
+                                  <Button onClick={() => history.push('/category/edit/' + c.id)}>Edit<BsFillPencilFill/></Button>
                                   <Button variant="danger" className="ml-3" onClick={
                                      async () => {
                                           const isConfirm = window.confirm('Confirm to delete >> ' + c.name + '?')
