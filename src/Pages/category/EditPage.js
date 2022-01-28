@@ -14,7 +14,7 @@ const EditPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }, setValue
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -27,19 +27,20 @@ const EditPage = () => {
   
   const onSubmit = async (data) => {
     console.log(data)
-    // try{
-    //     const apiURL = 'https://api.codingthailand.com/api/category'
-    // const resp = await axios.post(apiURL,
-    //         {
-    //             name: data.name
-    //         }
-    //     )
-    // alert("บันทึกข้อมูลสำเร็จ")
-    // history.goBack()
-    // }
-    // catch(error){
-    //     setError(error)
-    // }
+    try{
+        const apiURL = 'https://api.codingthailand.com/api/category'
+    const resp = await axios.put(apiURL,
+            {
+                id: id,
+                name: data.name
+            } 
+        )
+    alert("อัพเดทข้อมูลสำเร็จ")
+    history.replace('/category')
+    }
+    catch(error){
+        setError(error)
+    }
   }
 
   React.useEffect(() => {
@@ -50,7 +51,8 @@ const getData = async (id) => {
   const resp = await axios.get(
     'https://api.codingthailand.com/api/category/' + id
   );
-  console.log(resp.data);
+  //console.log(resp.data);
+  setValue('name',resp.data.name)
 };
 
 
@@ -87,7 +89,7 @@ const getData = async (id) => {
             </Form.Group>
 
             <Button variant="primary" type="submit">
-              Submit
+              Update
             </Button>
           </Form>
         </div>
