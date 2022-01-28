@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import axios from "axios";
 import { useParams, useHistory } from "react-router-dom";
+import { useToasts } from 'react-toast-notifications'
 
 
 const schema = yup.object({
@@ -19,6 +20,7 @@ const CreatePage = () => {
       });
       const [error, setError] = React.useState(null)
       const history = useHistory()
+      const { addToast} = useToasts()
 
     const onSubmit = async (data) => {
     //console.log(data)
@@ -29,7 +31,8 @@ const CreatePage = () => {
                     name: data.name
                 }
             )
-        alert("บันทึกข้อมูลสำเร็จ")
+        // alert("บันทึกข้อมูลสำเร็จ")
+        addToast("บันทึกข้อมูลสำเร็จ", {appearance: 'success', autoDismiss: true})
         history.goBack()
         }
         catch(error){

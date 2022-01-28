@@ -3,10 +3,13 @@ import axios from "axios";
 import { Table, Image, Badge, Spinner, Button } from "react-bootstrap"
 import {BsFillPencilFill,BsFillTrashFill } from "react-icons/bs"
 import { useHistory } from 'react-router-dom'
+import { useToasts } from 'react-toast-notifications'
 
 const Indexpage = () => {
 
     const history = useHistory()
+
+    const { addToast} = useToasts()
 
     const [category, setCategory] = React.useState([])
     const [loading, setLoading] = React.useState(false)
@@ -83,7 +86,8 @@ const Indexpage = () => {
                                               try{
                                                 const apiURL = 'https://api.codingthailand.com/api/category/'
                                                 const resp = await axios.delete(apiURL+c.id)
-                                                alert(resp.data.message)
+                                                // alert(resp.data.message)
+                                                addToast(resp.data.message, {appearance: 'success', autoDismiss: true})
                                                 history.go(0) //refresh page
                                               }
                                               catch(error){

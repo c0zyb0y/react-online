@@ -16,10 +16,13 @@ import HospitalPage from "./Pages/Hospital/HospitalPage";
 import IndexPage from "./Pages/category/IndexPage";
 import CreatePage from "./Pages/category/CreatePage";
 import EditPage from "./Pages/category/EditPage";
+import UploadPage from "./Pages/UploadPage";
+import { ToastProvider } from 'react-toast-notifications';
 
 
 function App() {
   return (
+    <ToastProvider placement="top-center">
     <Router>
        <NavBar/>
        <Switch>
@@ -41,9 +44,11 @@ function App() {
            </>
          )}>
          </Route>
+         <Route path='/upload'><UploadPage/></Route>
        </Switch>
        <Footer/>
     </Router>
+    </ToastProvider>
   );
 }
 

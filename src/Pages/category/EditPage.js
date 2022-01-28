@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import { useParams, useHistory } from "react-router-dom";
+import { useToasts } from 'react-toast-notifications'
 
 const schema = yup.object({
     name: yup.string().required("Category news can't be null"),
@@ -24,6 +25,8 @@ const EditPage = () => {
 
   const { id } = useParams();
 
+  const { addToast} = useToasts()
+
   
   const onSubmit = async (data) => {
     console.log(data)
@@ -35,7 +38,8 @@ const EditPage = () => {
                 name: data.name
             } 
         )
-    alert("อัพเดทข้อมูลสำเร็จ")
+    // alert("อัพเดทข้อมูลสำเร็จ")
+    addToast("อัพเดทข้อมูลสำเร็จ", {appearance: 'success', autoDismiss: true})
     history.replace('/category')
     }
     catch(error){
