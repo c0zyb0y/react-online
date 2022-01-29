@@ -5,6 +5,22 @@ import { NavLink, useHistory } from "react-router-dom"
 const NavBar = () => {
 
   const history = useHistory()
+
+  const [profile,setProfile] = React.useState(null)
+
+  const getProfile = () => {
+    //localStorage.getItem('profile')
+    const profileValue = JSON.parse(localStorage.getItem('profile'))
+    if (profileValue){
+      setProfile(profileValue)
+    }
+
+  }
+  React.useEffect(() => {
+    getProfile()
+
+
+  },[])
   return (
     <div>
       <Navbar bg="dark" variant="dark" expand="lg">
@@ -34,10 +50,18 @@ const NavBar = () => {
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-success">Search</Button>
           </Form> */}
-          <Nav>
-            <NavLink className="nav-link" activeClassName="active" to="/register">Register</NavLink>
-            <NavLink className="nav-link" activeClassName="active" to="/login">Login</NavLink>
-          </Nav>
+          {
+            profile ? (
+              <span className="nav-text text-white">Welcom {profile.name} <button className="btn btn-danger ml-2">Logout</button></span>
+            ) : (
+              <>
+                <Nav>
+                  <NavLink className="nav-link" activeClassName="active" to="/register">Register</NavLink>
+                  <NavLink className="nav-link" activeClassName="active" to="/login">Login</NavLink>
+                </Nav>
+              </>
+            )
+          }
         </Navbar.Collapse>
       </Navbar>
     </div>
