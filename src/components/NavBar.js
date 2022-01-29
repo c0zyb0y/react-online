@@ -30,10 +30,14 @@ const NavBar = () => {
             </NavDropdown>
             <NavLink className="nav-link" activeClassName="active" to="/upload">Upload</NavLink>
           </Nav>
-          <Form inline>
+          {/* <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-success">Search</Button>
-          </Form>
+          </Form> */}
+          <Nav>
+            <NavLink className="nav-link" activeClassName="active" to="/register">Register</NavLink>
+            <NavLink className="nav-link" activeClassName="active" to="/login">Login</NavLink>
+          </Nav>
         </Navbar.Collapse>
       </Navbar>
     </div>
