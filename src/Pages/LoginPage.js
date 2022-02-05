@@ -6,6 +6,7 @@ import * as yup from "yup";
 import axios from "axios";
 import { useParams, useHistory } from "react-router-dom";
 import { useToasts } from 'react-toast-notifications'
+import { UserStoreContext } from "../context/UserContext";
 
 
 const schema = yup.object({
@@ -22,6 +23,7 @@ const LoginPage = () => {
       const [error, setError] = React.useState(null)
       const history = useHistory()
       const { addToast} = useToasts()
+      const userStore = React.useContext(UserStoreContext)
 
     const onSubmit = async (data) => {
     //console.log(data)
@@ -49,8 +51,11 @@ const LoginPage = () => {
         localStorage.setItem('profile',JSON.stringify(respProfile.data.data.user))
 
         addToast("Login successful", {appearance: 'success', autoDismiss: true})
+        const profileValue = JSON.parse(localStorage.getItem('profile'))
+        userStore.updateProfile(profileValue)
+
         history.replace('/')
-        history.go(0)
+        // history.go(0)
         }
         catch(error){
             addToast(error.response.data.message, {appearance:'error', autoDismiss: true})

@@ -1,24 +1,27 @@
 import React from "react";
 import {Navbar, Nav, NavDropdown, Form, FormControl, Button} from "react-bootstrap"
 import { NavLink, useHistory } from "react-router-dom"
+import { UserStoreContext } from "../context/UserContext";
 
 const NavBar = () => {
 
   const history = useHistory()
 
-  const [profile,setProfile] = React.useState(null)
+  const userStore = React.useContext(UserStoreContext)
 
-  const getProfile = () => {
-    //localStorage.getItem('profile')
-    const profileValue = JSON.parse(localStorage.getItem('profile'))
-    if (profileValue){
-      setProfile(profileValue)
-    }
+  // const [profile,setProfile] = React.useState(null)
 
-  }
-  React.useEffect(() => {
-    getProfile()
-  },[])
+  // const getProfile = () => {
+  //   //localStorage.getItem('profile')
+  //   const profileValue = JSON.parse(localStorage.getItem('profile'))
+  //   if (profileValue){
+  //     setProfile(profileValue)
+  //   }
+
+  // }
+  // React.useEffect(() => {
+  //   getProfile()
+  // },[])
   const logout = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('profile')
@@ -56,8 +59,8 @@ const NavBar = () => {
             <Button variant="outline-success">Search</Button>
           </Form> */}
           {
-            profile ? (
-              <span className="nav-text text-white">Welcome {profile.name} <button className="btn btn-danger ml-2" onClick={logout}>Logout</button></span>
+            userStore.profile ? (
+              <span className="nav-text text-white">Welcome {userStore.profile.name} <button className="btn btn-danger ml-2" onClick={logout}>Logout</button></span>
             ) : (
               <>
                 <Nav>
