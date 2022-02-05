@@ -11,17 +11,19 @@ const NavBar = () => {
 
   // const [profile,setProfile] = React.useState(null)
 
-  // const getProfile = () => {
-  //   //localStorage.getItem('profile')
-  //   const profileValue = JSON.parse(localStorage.getItem('profile'))
-  //   if (profileValue){
-  //     setProfile(profileValue)
-  //   }
+  const getProfile = () => {
+    //localStorage.getItem('profile')
+    const profileValue = JSON.parse(localStorage.getItem('profile'))
+    if (profileValue){
+      // setProfile(profileValue)
+      userStore.updateProfile(profileValue)
+    }
 
-  // }
-  // React.useEffect(() => {
-  //   getProfile()
-  // },[])
+  }
+  React.useEffect(() => {
+    getProfile()
+  },[])
+
   const logout = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('profile')

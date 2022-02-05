@@ -1,14 +1,40 @@
 import React from "react";
 import {FaCanadianMapleLeaf} from "react-icons/fa"
+import { UserStoreContext } from "../context/UserContext";
 
 const HomePage = () => {
+
+  const userStore = React.useContext(UserStoreContext)
+
+  const getProfile = () => {
+    //localStorage.getItem('profile')
+    const profileValue = JSON.parse(localStorage.getItem('profile'))
+    if (profileValue){
+      // setProfile(profileValue)
+      userStore.updateProfile(profileValue)
+    }
+  }
+  React.useEffect(() => {
+    getProfile()
+  },[])
+
+  
+
+
   return (
     <div>
       <main role="main">
         {/* Main jumbotron for a primary marketing message or call to action */}
         <div className="jumbotron">
           <div className="container">
-            <h1 className="display-3">Hello, world! <FaCanadianMapleLeaf color="Red"/></h1>
+            <h1 className="display-3">Hello, world! {
+            userStore.profile ? (
+              <span className="nav-text text-dark">Welcome {userStore.profile.name} </span>
+            ) : (
+              <>
+              </>
+            )
+            } <FaCanadianMapleLeaf color="Red"/></h1>
             <p>
               This is a template for a simple marketing or informational
               website. It includes a large callout called a jumbotron and three
