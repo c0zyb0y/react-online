@@ -29,7 +29,7 @@ const HomePage = () => {
           <div className="container">
             <h1 className="display-3">Hello, world! {
             userStore.profile ? (
-              <span className="nav-text text-dark">Welcome {userStore.profile.name} </span>
+              <span className="nav-text text-dark">{userStore.profile.name} </span>
             ) : (
               <>
               </>
