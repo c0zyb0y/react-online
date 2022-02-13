@@ -3,6 +3,8 @@ import { Table, Image, Badge, Spinner, Button } from "react-bootstrap"
 import axios from "axios";
 import { GiClick } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import { addToCart } from "../redux/actions/cartAction";
+import { useSelector, useDispatch } from "react-redux";
 
 
 const ProductPage = () => {
@@ -11,6 +13,10 @@ const ProductPage = () => {
     const [product, setProduct] = React.useState([])
     const [loading, setLoading] = React.useState(false)
     const [error, setError] = React.useState(null)
+
+    const dispatch = useDispatch()
+    const cart = useSelector((state) => state.cartReducer.cart)
+    const total = useSelector((state) => state.cartReducer.total)
 
     const getData = async () => {
 
@@ -50,6 +56,19 @@ const ProductPage = () => {
         )
     }
 
+    const addCart = (p) =>{
+      const product = {
+        id: p.id,
+        name:p.title,
+        price:p.view, //assume that view = price
+        qty: 1
+      }
+
+      //call action
+      dispatch(addToCart(product, cart))
+
+    }
+
   return (
     <div className="container">
       <div className="row">
@@ -82,6 +101,9 @@ const ProductPage = () => {
                                 <Link to={`/detail/${p.id}/title/${p.title}`}>
                                 <Button variant="secondary">Click<GiClick/></Button>
                                 </Link>
+
+                                <Button variant="warning" className="ml-2" onClick={() => addCart(p)}>Buy<GiClick/></Button>
+        
                               </td>
                           </tr>
                       )
